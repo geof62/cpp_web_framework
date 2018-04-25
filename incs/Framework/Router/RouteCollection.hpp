@@ -5,12 +5,13 @@
 # include	<vector>
 # include	"Framework/Router/Route.hpp"
 # include	"Framework/Application/Controller.hpp"
+# include 	"Framework/Router/RouterComponentInterface.hpp"
 
 namespace		Framework
 {
 	namespace	Router
 	{
-		class	RouteCollection
+		class	RouteCollection : public RouterComponentInterface
 		{
 		protected:
 			std::string															prefix = "";
@@ -23,6 +24,8 @@ namespace		Framework
 
 			RouteCollection	&add(const Route<Framework::Application::Controller> &);
 			RouteCollection	&collection(const RouteCollection &);
+
+            virtual const RouteMatched      *match(const std::string &) const;
 		};
 	}
 }

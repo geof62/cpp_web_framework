@@ -2,6 +2,7 @@
 # define	FRAMEWORK_ROUTER_ROUTER_HPP_
 
 # include	"Framework/Router/RouteCollection.hpp"
+# include 	"Framework/Router/RouterComponentInterface.hpp"
 
 namespace		Framework
 {
@@ -10,14 +11,14 @@ namespace		Framework
 		class	Router
 		{
 		public:
-			typedef	const RouteCollection &(*ROUTER_COMPONENT)(void);
+			typedef	const RouteCollection &(* )(void);
 			 
 		protected:
 
 		public:
 			virtual		~Router(void);
 
-			void	add(Router::ROUTER_COMPONENT);
+			void	add(const RouterComponentInterface &);
 		};
 	}
 }

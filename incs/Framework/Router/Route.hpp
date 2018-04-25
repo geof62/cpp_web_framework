@@ -3,6 +3,7 @@
 
 # include	<string>
 # include	"Framework/Application/Response.hpp"
+# include 	"Framework/Router/RouterComponentInterface.hpp"
 
 namespace		Framework
 {
@@ -15,7 +16,7 @@ namespace		Framework
 		};
 
 		template <typename T>
-		class	Route
+		class	Route : public RouterComponentInterface
 		{
 		public:
 			typedef const Framework::Application::Response &(T::* PTR_ACTION)(void);
@@ -28,7 +29,11 @@ namespace		Framework
 
 			Route	&name(const std::string &);
 			Route	&locale(const std::string &);
+
+			// return it-self.
 			Route	&g(void) const;
+
+            virtual const RouteMatched      *match(const std::string &) const;
 
 			virtual ~Route(void);
 		};
